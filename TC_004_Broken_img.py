@@ -3,8 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 import requests
-from elementos.elementos import enlace
-from elementos.funciones import esperar
+from elementos.elementos import enlace, broken_img_enlace
 
 #inicializamos el driver
 driver = webdriver.Chrome()
@@ -15,10 +14,10 @@ driver.get(enlace)
 driver.maximize_window()
 
 #esperamos se cargue el elemento en pagina
-WebDriverWait(driver,2).until(EC.element_to_be_clickable((By.CSS_SELECTOR,'#content > ul > li:nth-child(4) > a')))
+WebDriverWait(driver,2).until(EC.element_to_be_clickable((By.CSS_SELECTOR,broken_img_enlace)))
 
 #vamos al enlace de broken images
-broken_images_link = driver.find_element(By.CSS_SELECTOR,'#content > ul > li:nth-child(4) > a')
+broken_images_link = driver.find_element(By.CSS_SELECTOR,broken_img_enlace)
 broken_images_link.click()
 broken_images_list = []
 images = driver.find_elements(By.TAG_NAME,'img')
